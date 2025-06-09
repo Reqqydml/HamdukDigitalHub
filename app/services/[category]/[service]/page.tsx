@@ -22,24 +22,20 @@ export async function generateStaticParams() {
 
 export default function ServicePage({ params }: { params: { category: string; service: string } }) {
   const category = serviceCategories.find((cat) => cat.slug === params.category)
-  
+
   if (!category) {
     notFound()
   }
-  
-  const service = category.services.find(
-    (svc) => svc.name.toLowerCase().replace(/\s+/g, '-') === params.service
-  )
-  
+
+  const service = category.services.find((svc) => svc.name.toLowerCase().replace(/\s+/g, "-") === params.service)
+
   if (!service) {
     notFound()
   }
-  
+
   // Find related services from the same category
-  const relatedServices = category.services
-    .filter(s => s.name !== service.name)
-    .slice(0, 3)
-  
+  const relatedServices = category.services.filter((s) => s.name !== service.name).slice(0, 3)
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
@@ -48,9 +44,13 @@ export default function ServicePage({ params }: { params: { category: string; se
           <div className="container px-4 md:px-6">
             <div className="flex flex-col space-y-4">
               <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
+                <Link href="/services" className="hover:text-primary transition-colors">
+                  Services
+                </Link>
                 <ChevronRight className="h-4 w-4" />
-                <Link href={`/services/${category.slug}`} className="hover:text-primary transition-colors">{category.name}</Link>
+                <Link href={`/services/${category.slug}`} className="hover:text-primary transition-colors">
+                  {category.name}
+                </Link>
                 <ChevronRight className="h-4 w-4" />
                 <span>{service.name}</span>
               </div>
@@ -79,17 +79,28 @@ export default function ServicePage({ params }: { params: { category: string; se
               <div>
                 <h2 className="text-2xl font-bold tracking-tighter mb-4">What's Included</h2>
                 <div className="space-y-4">
-                  {service.features && service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5" />
-                      <p>{feature}</p>
-                    </div>
-                  ))}
+                  {service.features &&
+                    service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5" />
+                        <p>{feature}</p>
+                      </div>
+                    ))}
                 </div>
               </div>
-              
+
               <div>
                 <h2 className="text-2xl font-bold tracking-tighter mb-4">Why Choose Our {service.name} Service</h2>
                 <div className="space-y-4">
                   <p className="text-muted-foreground">
-                    At Hamduk Digital Hub, we provide exceptional {
+                    At Hamduk Digital Hub, we provide exceptional {service.name} services.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  )
+}
