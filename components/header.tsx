@@ -2,20 +2,19 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Globe, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { ModeToggle } from "./mode-toggle"
 import { AuthModal } from "@/components/auth/auth-modal"
 import { useAuth } from "@/components/auth/auth-provider"
@@ -48,215 +47,225 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Globe className="h-6 w-6 text-primary" />
-          <Link href="/" className="text-xl font-bold">
-            Hamduk Digital Hub
-          </Link>
-        </div>
+        <Link href="/" className="flex items-center space-x-2">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-gVikpykI0TkYcnkvYUxnRMjbBCxqkN.png"
+            alt="Hamduk Digital Hub Logo"
+            width={40}
+            height={40}
+          />
+          <span className="hidden font-bold sm:inline-block">Hamduk Digital Hub</span>
+        </Link>
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          {/* Desktop Navigation */}
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), pathname === "/" && "text-primary")}>
+                    Home
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/services" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/services" && "text-primary")}
+                  >
+                    Services
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/portfolio" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/portfolio" && "text-primary")}
+                  >
+                    Portfolio
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/courses" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/courses" && "text-primary")}
+                  >
+                    Courses
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/about" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/about" && "text-primary")}
+                  >
+                    About
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/blog" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/blog" && "text-primary")}
+                  >
+                    Blog
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/contact" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/contact" && "text-primary")}
+                  >
+                    Contact
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/community-hub" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), pathname === "/community-hub" && "text-primary")}
+                  >
+                    Community
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
-        {/* Desktop Navigation */}
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), pathname === "/" && "text-primary")}>
-                  Home
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={pathname === "/services" ? "text-primary" : ""}>
-                Services
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/services" title="All Services">
-                    Browse our complete catalog of over 100 digital services
-                  </ListItem>
-                  <ListItem href="/services/web-development" title="Web Development">
-                    Custom websites, e-commerce, and web applications
-                  </ListItem>
-                  <ListItem href="/services/app-development" title="App Development">
-                    Mobile apps for iOS and Android platforms
-                  </ListItem>
-                  <ListItem href="/services/branding" title="Branding">
-                    Logo design, brand identity, and visual assets
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/courses" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/courses" && "text-primary")}
-                >
-                  Courses
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/shop" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/shop" && "text-primary")}
-                >
-                  Shop
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/community-hub" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/community-hub" && "text-primary")}
-                >
-                  Community
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/about" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/about" && "text-primary")}
-                >
-                  About
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/contact" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/contact" && "text-primary")}
-                >
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        <div className="flex items-center gap-4">
-          <ModeToggle />
-          {user ? (
-            <>
-              <Link href="/dashboard" className="hidden md:block">
-                <Button variant="outline">Dashboard</Button>
-              </Link>
-              <Button variant="outline" onClick={signOut} className="hidden md:block">
-                Sign Out
-              </Button>
-            </>
-          ) : (
-            <>
-              <AuthModal>
-                <Button variant="outline" className="hidden md:block">
-                  Sign In
+          <div className="flex items-center space-x-2">
+            <ModeToggle />
+            {user ? (
+              <>
+                <Link href="/dashboard" className="hidden md:block">
+                  <Button variant="outline">Dashboard</Button>
+                </Link>
+                <Button variant="outline" onClick={signOut} className="hidden md:block">
+                  Sign Out
                 </Button>
-              </AuthModal>
-              <AuthModal>
-                <Button className="hidden md:block">Get Started</Button>
-              </AuthModal>
-            </>
-          )}
+              </>
+            ) : (
+              <>
+                <AuthModal>
+                  <Button variant="outline" className="hidden md:block">
+                    Sign In
+                  </Button>
+                </AuthModal>
+                <AuthModal>
+                  <Button className="hidden md:block">Get Started</Button>
+                </AuthModal>
+              </>
+            )}
 
-          {/* Mobile Navigation */}
-          <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <div className="flex flex-col gap-4 py-4">
-                <Link
-                  href="/"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/" && "text-primary",
-                  )}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/services"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/services" && "text-primary",
-                  )}
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/courses"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/courses" && "text-primary",
-                  )}
-                >
-                  Courses
-                </Link>
-                <Link
-                  href="/shop"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/shop" && "text-primary",
-                  )}
-                >
-                  Shop
-                </Link>
-                <Link
-                  href="/community-hub"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/community-hub" && "text-primary",
-                  )}
-                >
-                  Community
-                </Link>
-                <Link
-                  href="/about"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/about" && "text-primary",
-                  )}
-                >
-                  About
-                </Link>
-                <Link
-                  href="/contact"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/contact" && "text-primary",
-                  )}
-                >
-                  Contact
-                </Link>
-                {user ? (
-                  <>
-                    <Link href="/dashboard">
-                      <Button variant="outline" className="w-full">
-                        Dashboard
+            {/* Mobile Navigation */}
+            <Sheet>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <div className="flex flex-col gap-4 py-4">
+                  <Link
+                    href="/"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/" && "text-primary",
+                    )}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href="/services"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/services" && "text-primary",
+                    )}
+                  >
+                    Services
+                  </Link>
+                  <Link
+                    href="/portfolio"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/portfolio" && "text-primary",
+                    )}
+                  >
+                    Portfolio
+                  </Link>
+                  <Link
+                    href="/courses"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/courses" && "text-primary",
+                    )}
+                  >
+                    Courses
+                  </Link>
+                  <Link
+                    href="/about"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/about" && "text-primary",
+                    )}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/blog" && "text-primary",
+                    )}
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/contact" && "text-primary",
+                    )}
+                  >
+                    Contact
+                  </Link>
+                  <Link
+                    href="/community-hub"
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === "/community-hub" && "text-primary",
+                    )}
+                  >
+                    Community Hub
+                  </Link>
+                  {user ? (
+                    <>
+                      <Link href="/dashboard">
+                        <Button variant="outline" className="w-full">
+                          Dashboard
+                        </Button>
+                      </Link>
+                      <Button onClick={signOut} variant="outline" className="w-full">
+                        Sign Out
                       </Button>
-                    </Link>
-                    <Button onClick={signOut} variant="outline" className="w-full">
-                      Sign Out
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <AuthModal>
-                      <Button variant="outline" className="w-full">
-                        Sign In
-                      </Button>
-                    </AuthModal>
-                    <AuthModal>
-                      <Button className="w-full">Get Started</Button>
-                    </AuthModal>
-                  </>
-                )}
-              </div>
-            </SheetContent>
-          </Sheet>
+                    </>
+                  ) : (
+                    <>
+                      <AuthModal>
+                        <Button variant="outline" className="w-full">
+                          Sign In
+                        </Button>
+                      </AuthModal>
+                      <AuthModal>
+                        <Button className="w-full">Get Started</Button>
+                      </AuthModal>
+                    </>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
