@@ -17,13 +17,10 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Globe, Menu } from "lucide-react"
 import { ModeToggle } from "./mode-toggle"
-import { AuthModal } from "@/components/auth/auth-modal"
-import { useAuth } from "@/components/auth/auth-provider"
 
 export function Header() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = React.useState(false)
-  const { user, signOut } = useAuth()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -105,9 +102,9 @@ export function Header() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/community-hub" legacyBehavior passHref>
+              <Link href="/community" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/community-hub" && "text-primary")}
+                  className={cn(navigationMenuTriggerStyle(), pathname === "/community" && "text-primary")}
                 >
                   Community
                 </NavigationMenuLink>
@@ -136,27 +133,12 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <ModeToggle />
-          {user ? (
-            <>
-              <Link href="/dashboard" className="hidden md:block">
-                <Button variant="outline">Dashboard</Button>
-              </Link>
-              <Button variant="outline" onClick={signOut} className="hidden md:block">
-                Sign Out
-              </Button>
-            </>
-          ) : (
-            <>
-              <AuthModal>
-                <Button variant="outline" className="hidden md:block">
-                  Sign In
-                </Button>
-              </AuthModal>
-              <AuthModal>
-                <Button className="hidden md:block">Get Started</Button>
-              </AuthModal>
-            </>
-          )}
+          <Link href="/client-portal" className="hidden md:block">
+            <Button variant="outline">Client Portal</Button>
+          </Link>
+          <Link href="/contact" className="hidden md:block">
+            <Button>Get Started</Button>
+          </Link>
 
           {/* Mobile Navigation */}
           <Sheet>
@@ -205,10 +187,10 @@ export function Header() {
                   Shop
                 </Link>
                 <Link
-                  href="/community-hub"
+                  href="/community"
                   className={cn(
                     "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/community-hub" && "text-primary",
+                    pathname === "/community" && "text-primary",
                   )}
                 >
                   Community
@@ -231,29 +213,14 @@ export function Header() {
                 >
                   Contact
                 </Link>
-                {user ? (
-                  <>
-                    <Link href="/dashboard">
-                      <Button variant="outline" className="w-full">
-                        Dashboard
-                      </Button>
-                    </Link>
-                    <Button onClick={signOut} variant="outline" className="w-full">
-                      Sign Out
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <AuthModal>
-                      <Button variant="outline" className="w-full">
-                        Sign In
-                      </Button>
-                    </AuthModal>
-                    <AuthModal>
-                      <Button className="w-full">Get Started</Button>
-                    </AuthModal>
-                  </>
-                )}
+                <Link href="/client-portal">
+                  <Button variant="outline" className="w-full">
+                    Client Portal
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button className="w-full">Get Started</Button>
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
