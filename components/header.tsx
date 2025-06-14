@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -15,23 +16,30 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Globe, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { ModeToggle } from "./mode-toggle"
 import { AuthModal } from "@/components/auth/auth-modal"
 import { useAuth } from "@/components/auth/auth-provider"
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/courses", label: "Courses" },
+  { href: "/shop", label: "Shop" },
+  { href: "/community-hub", label: "Community" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+]
 
 export function Header() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = React.useState(false)
   const { user, signOut } = useAuth()
+  const isServicesPath = pathname.startsWith("/services")
 
   React.useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 10)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -48,92 +56,60 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between">
+        {/* Logo and Brand */}
         <div className="flex items-center gap-2">
-          <Globe className="h-6 w-6 text-primary" />
-          <Link href="/" className="text-xl font-bold">
-            Hamduk Digital Hub
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/logo.png" alt="Hamduk Digital Hub Logo" width={32} height={32} />
+            <span className="text-xl font-bold">Hamduk Digital Hub</span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), pathname === "/" && "text-primary")}>
-                  Home
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={pathname === "/services" ? "text-primary" : ""}>
-                Services
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/services" title="All Services">
-                    Browse our complete catalog of over 100 digital services
-                  </ListItem>
-                  <ListItem href="/services/web-development" title="Web Development">
-                    Custom websites, e-commerce, and web applications
-                  </ListItem>
-                  <ListItem href="/services/app-development" title="App Development">
-                    Mobile apps for iOS and Android platforms
-                  </ListItem>
-                  <ListItem href="/services/branding" title="Branding">
-                    Logo design, brand identity, and visual assets
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/courses" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/courses" && "text-primary")}
-                >
-                  Courses
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/shop" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/shop" && "text-primary")}
-                >
-                  Shop
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/community-hub" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/community-hub" && "text-primary")}
-                >
-                  Community
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/about" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/about" && "text-primary")}
-                >
-                  About
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/contact" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), pathname === "/contact" && "text-primary")}
-                >
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+            {navLinks.map(({ href, label }) =>
+              label === "Services" ? (
+                <NavigationMenuItem key={label}>
+                  <NavigationMenuTrigger className={isServicesPath ? "text-primary" : ""}>
+                    {label}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      <ListItem href="/services" title="All Services">
+                        Browse our complete catalog of over 100 digital services
+                      </ListItem>
+                      <ListItem href="/services/web-development" title="Web Development">
+                        Custom websites, e-commerce, and web applications
+                      </ListItem>
+                      <ListItem href="/services/app-development" title="App Development">
+                        Mobile apps for iOS and Android platforms
+                      </ListItem>
+                      <ListItem href="/services/branding" title="Branding">
+                        Logo design, brand identity, and visual assets
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem key={label}>
+                  <Link href={href} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        pathname === href && "text-primary"
+                      )}
+                      aria-current={pathname === href ? "page" : undefined}
+                    >
+                      {label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )
+            )}
           </NavigationMenuList>
         </NavigationMenu>
 
+        {/* Right Actions */}
         <div className="flex items-center gap-4">
           <ModeToggle />
           {user ? (
@@ -168,69 +144,19 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-4 py-4">
-                <Link
-                  href="/"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/" && "text-primary",
-                  )}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/services"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/services" && "text-primary",
-                  )}
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/courses"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/courses" && "text-primary",
-                  )}
-                >
-                  Courses
-                </Link>
-                <Link
-                  href="/shop"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/shop" && "text-primary",
-                  )}
-                >
-                  Shop
-                </Link>
-                <Link
-                  href="/community-hub"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/community-hub" && "text-primary",
-                  )}
-                >
-                  Community
-                </Link>
-                <Link
-                  href="/about"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/about" && "text-primary",
-                  )}
-                >
-                  About
-                </Link>
-                <Link
-                  href="/contact"
-                  className={cn(
-                    "text-lg font-medium transition-colors hover:text-primary",
-                    pathname === "/contact" && "text-primary",
-                  )}
-                >
-                  Contact
-                </Link>
+                {navLinks.map(({ href, label }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className={cn(
+                      "text-lg font-medium transition-colors hover:text-primary",
+                      pathname === href && "text-primary"
+                    )}
+                    aria-current={pathname === href ? "page" : undefined}
+                  >
+                    {label}
+                  </Link>
+                ))}
                 {user ? (
                   <>
                     <Link href="/dashboard">
@@ -285,3 +211,4 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   },
 )
 ListItem.displayName = "ListItem"
+
