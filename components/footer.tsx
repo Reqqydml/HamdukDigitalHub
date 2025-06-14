@@ -1,11 +1,8 @@
 "use client"
 
-
-
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
-import { supabase } from "@/lib/supabaseClient" // Update path to your actual Supabase client
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -13,35 +10,45 @@ export function Footer() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState("")
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setError("")
+    setSuccess(false)
 
-    const { error } = await supabase.from("newsletter_subscribers").insert([{ email }])
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
 
-    if (!error) {
-      setSuccess(true)
-      setEmail("")
-    } else {
-      alert("Something went wrong. Please try again.")
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong.")
+      } else {
+        setSuccess(true)
+        setEmail("")
+      }
+    } catch (err) {
+      console.error("Subscription error:", err)
+      setError("An unexpected error occurred.")
+    } finally {
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (
     <footer className="w-full border-t bg-background py-12">
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/logo.svg" // Replace with your actual logo path
-                alt="Hamduk Digital Hub logo"
-                width={32}
-                height={32}
-              />
+              <Image src="/logo.svg" alt="Hamduk Digital Hub logo" width={32} height={32} />
               <span className="text-xl font-bold">Hamduk Digital Hub</span>
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -49,30 +56,11 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               {[
-                {
-                  href: "#",
-                  label: "Facebook",
-                  svg: (
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fillRule="evenodd"
-                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ),
-                },
-                {
-                  href: "#",
-                  label: "Twitter",
-                  svg: (
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675..." />
-                    </svg>
-                  ),
-                },
-                // Add other icons similarly...
-              ].map(({ href, label, svg }, idx) => (
+                { href: "#", label: "Facebook", icon: "facebook" },
+                { href: "#", label: "Twitter", icon: "twitter" },
+                { href: "#", label: "LinkedIn", icon: "linkedin" },
+                { href: "#", label: "Instagram", icon: "instagram" },
+              ].map(({ href, label }, idx) => (
                 <Link key={idx} href={href} passHref legacyBehavior>
                   <a
                     target="_blank"
@@ -80,7 +68,7 @@ export function Footer() {
                     className="text-muted-foreground hover:text-primary"
                     aria-label={label}
                   >
-                    {svg}
+                    <i className={`ri-${label.toLowerCase()}-line text-xl`} />
                   </a>
                 </Link>
               ))}
@@ -114,9 +102,9 @@ export function Footer() {
               {[
                 ["About Us", "/about"],
                 ["Portfolio", "/portfolio"],
-                ["Testimonials", "/testimonials"],
                 ["Careers", "/careers"],
                 ["Blog", "/blog"],
+                ["Testimonials", "/testimonials"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-muted-foreground hover:text-primary">
@@ -145,14 +133,25 @@ export function Footer() {
                 {loading ? "Subscribing..." : "Subscribe"}
               </Button>
               {success && <p className="text-sm text-green-600">You’ve been subscribed!</p>}
+              {error && <p className="text-sm text-red-600">{error}</p>}
             </form>
           </div>
         </div>
 
-        <div className="mt-12 border-t pt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Hamduk Digital Hub. All rights reserved.
-          </p>
+        {/* Bottom Section */}
+        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground space-y-2">
+          <p>© {new Date().getFullYear()} Hamduk Digital Hub. All rights reserved.</p>
+          <div className="space-x-4">
+            <Link href="/privacy" className="hover:text-primary">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-primary">
+              Terms of Service
+            </Link>
+            <Link href="/contact" className="hover:text-primary">
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
