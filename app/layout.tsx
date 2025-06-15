@@ -17,7 +17,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Hamduk Digital Hub",
   description: "Your one-stop digital solutions hub with over 100 digital services",
-    generator: 'v0.dev'
+
 }
 
 export default function RootLayout({
@@ -25,18 +25,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
+ return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <AuthProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <div className="flex-1">{children}</div>
-              <Footer />
-            </div>
-            <Toaster />
-          </AuthProvider>
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+      </head>
+      <body className={`${inter.className} bg-background text-foreground`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <div className="min-h-screen bg-background">
+            <Navbar />
+            <main className="bg-background">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>
