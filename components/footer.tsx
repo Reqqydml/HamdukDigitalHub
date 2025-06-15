@@ -48,7 +48,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.svg" alt="Hamduk Digital Hub logo" width={32} height={32} />
+              <Image src="/logo.png" alt="Hamduk Digital Hub logo" width={32} height={32} />
               <span className="text-xl font-bold">Hamduk Digital Hub</span>
             </Link>
             <p className="text-sm text-muted-foreground">
