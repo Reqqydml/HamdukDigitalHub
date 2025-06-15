@@ -17,7 +17,11 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Hamduk Digital Hub",
   description: "Your one-stop digital solutions hub with over 100 digital services",
-
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 }
 
 export default function RootLayout({
@@ -25,17 +29,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
- return (
+  return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/logo.png" type="image/png" />
-        <link rel="shortcut icon" href="/logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-      </head>
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body className={cn(fontSans.variable, "bg-background text-foreground")}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="min-h-screen bg-background">
-            <Navbar />
+            <Header />
             <main className="bg-background">{children}</main>
             <Footer />
           </div>
