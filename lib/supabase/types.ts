@@ -1,311 +1,243 @@
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+
 export type Database = {
   public: {
     Tables: {
-      users: {
+      job_applications: {
         Row: {
-          id: string
-          email: string
-          full_name: string | null
-          phone: string | null
-          avatar_url: string | null
-          role: "general" | "business" | "developer" | "premium"
-          subscription_status: "active" | "inactive" | "cancelled" | "trial"
-          subscription_expires_at: string | null
-          api_key: string | null
-          api_calls_count: number
-          api_calls_limit: number
+          availability: string
+          cover_letter: string
           created_at: string
-          updated_at: string
+          department: string
+          email: string
+          experience_level: string
+          expected_salary: string
+          first_name: string
+          github_url: string | null
+          id: number
+          interview_date: string | null
+          ip_address: string | null
+          last_name: string
+          linkedin_url: string | null
+          notes: string | null
+          phone: string
+          portfolio_file_url: string | null
+          portfolio_url: string | null
+          position: string
+          resume_url: string | null
+          reviewer_id: string | null
+          skills: string
+          source: string | null
+          status: string | null
+          updated_at: string | null
+          user_agent: string | null
+          work_type: string
         }
         Insert: {
-          id: string
+          availability: string
+          cover_letter: string
+          created_at?: string
+          department: string
           email: string
-          full_name?: string | null
-          phone?: string | null
-          avatar_url?: string | null
-          role?: "general" | "business" | "developer" | "premium"
-          subscription_status?: "active" | "inactive" | "cancelled" | "trial"
-          subscription_expires_at?: string | null
-          api_key?: string | null
-          api_calls_count?: number
-          api_calls_limit?: number
+          experience_level: string
+          expected_salary: string
+          first_name: string
+          github_url?: string | null
+          id?: number
+          interview_date?: string | null
+          ip_address?: string | null
+          last_name: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone: string
+          portfolio_file_url?: string | null
+          portfolio_url?: string | null
+          position: string
+          resume_url?: string | null
+          reviewer_id?: string | null
+          skills: string
+          source?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          work_type: string
         }
         Update: {
+          availability?: string
+          cover_letter?: string
+          created_at?: string
+          department?: string
           email?: string
-          full_name?: string | null
-          phone?: string | null
-          avatar_url?: string | null
-          role?: "general" | "business" | "developer" | "premium"
-          subscription_status?: "active" | "inactive" | "cancelled" | "trial"
-          subscription_expires_at?: string | null
-          api_key?: string | null
-          api_calls_count?: number
-          api_calls_limit?: number
+          experience_level?: string
+          expected_salary?: string
+          first_name?: string
+          github_url?: string | null
+          id?: number
+          interview_date?: string | null
+          ip_address?: string | null
+          last_name?: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone?: string
+          portfolio_file_url?: string | null
+          portfolio_url?: string | null
+          position?: string
+          resume_url?: string | null
+          reviewer_id?: string | null
+          skills?: string
+          source?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          work_type?: string
         }
+        Relationships: []
       }
-      quote_requests: {
+      newsletter_subscriptions: {
         Row: {
-          id: string
-          user_id: string | null
-          first_name: string
-          last_name: string
+          created_at: string
           email: string
-          phone: string | null
-          company: string | null
-          service_type: string
-          budget_range: string | null
-          timeline: string | null
-          project_details: string
-          status: "pending" | "reviewed" | "approved" | "rejected" | "completed"
-          estimated_cost: number | null
-          estimated_duration: string | null
-          assigned_to: string | null
-          notes: string | null
-          created_at: string
-          updated_at: string
+          id: number
+          is_active: boolean
+          source: string | null
+          subscribed_at: string | null
+          unsubscribed_at: string | null
+          updated_at: string | null
         }
         Insert: {
-          user_id?: string | null
-          first_name: string
-          last_name: string
+          created_at?: string
           email: string
-          phone?: string | null
-          company?: string | null
-          service_type: string
-          budget_range?: string | null
-          timeline?: string | null
-          project_details: string
-          status?: "pending" | "reviewed" | "approved" | "rejected" | "completed"
-          estimated_cost?: number | null
-          estimated_duration?: string | null
-          assigned_to?: string | null
-          notes?: string | null
+          id?: number
+          is_active?: boolean
+          source?: string | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string | null
         }
         Update: {
-          status?: "pending" | "reviewed" | "approved" | "rejected" | "completed"
-          estimated_cost?: number | null
-          estimated_duration?: string | null
-          assigned_to?: string | null
-          notes?: string | null
+          created_at?: string
+          email?: string
+          id?: number
+          is_active?: boolean
+          source?: string | null
+          subscribed_at?: string | null
+          unsubscribed_at?: string | null
+          updated_at?: string | null
         }
+        Relationships: []
       }
-      courses: {
+    }
+    Views: {
+      job_application_stats: {
         Row: {
-          id: string
-          title: string
-          description: string | null
-          instructor_name: string
-          instructor_id: string | null
-          category: string
-          level: string
-          duration_hours: number | null
-          price: number
-          currency: string
-          thumbnail_url: string | null
-          video_url: string | null
-          content: any
-          requirements: string[] | null
-          learning_outcomes: string[] | null
-          is_published: boolean
-          enrollment_count: number
-          rating: number
-          created_at: string
-          updated_at: string
+          count: number | null
+          department: string | null
+          month: string | null
+          position: string | null
+          status: string | null
         }
-        Insert: {
-          title: string
-          description?: string | null
-          instructor_name: string
-          instructor_id?: string | null
-          category: string
-          level: string
-          duration_hours?: number | null
-          price: number
-          currency?: string
-          thumbnail_url?: string | null
-          video_url?: string | null
-          content?: any
-          requirements?: string[] | null
-          learning_outcomes?: string[] | null
-          is_published?: boolean
-          enrollment_count?: number
-          rating?: number
-        }
-        Update: {
-          title?: string
-          description?: string | null
-          instructor_name?: string
-          category?: string
-          level?: string
-          duration_hours?: number | null
-          price?: number
-          currency?: string
-          thumbnail_url?: string | null
-          video_url?: string | null
-          content?: any
-          requirements?: string[] | null
-          learning_outcomes?: string[] | null
-          is_published?: boolean
-          enrollment_count?: number
-          rating?: number
-        }
+        Relationships: []
       }
-      digital_products: {
+      recent_job_applications: {
         Row: {
-          id: string
-          title: string
-          description: string | null
-          category: string
-          price: number
-          currency: string
-          original_price: number | null
-          thumbnail_url: string | null
-          preview_images: string[] | null
-          download_url: string | null
-          file_size: string | null
-          file_format: string | null
-          tags: string[] | null
-          is_featured: boolean
-          is_published: boolean
-          download_count: number
-          rating: number
-          created_by: string | null
-          created_at: string
-          updated_at: string
+          created_at: string | null
+          department: string | null
+          email: string | null
+          full_name: string | null
+          id: number | null
+          position: string | null
+          status: string | null
         }
-        Insert: {
-          title: string
-          description?: string | null
-          category: string
-          price: number
-          currency?: string
-          original_price?: number | null
-          thumbnail_url?: string | null
-          preview_images?: string[] | null
-          download_url?: string | null
-          file_size?: string | null
-          file_format?: string | null
-          tags?: string[] | null
-          is_featured?: boolean
-          is_published?: boolean
-          download_count?: number
-          rating?: number
-          created_by?: string | null
-        }
-        Update: {
-          title?: string
-          description?: string | null
-          category?: string
-          price?: number
-          currency?: string
-          original_price?: number | null
-          thumbnail_url?: string | null
-          preview_images?: string[] | null
-          download_url?: string | null
-          file_size?: string | null
-          file_format?: string | null
-          tags?: string[] | null
-          is_featured?: boolean
-          is_published?: boolean
-          download_count?: number
-          rating?: number
-        }
+        Relationships: []
       }
-      va_bookings: {
-        Row: {
-          id: string
-          user_id: string
-          service_type: string
-          description: string
-          duration_hours: number
-          hourly_rate: number
-          total_cost: number
-          currency: string
-          preferred_start_date: string | null
-          preferred_time: string | null
-          status: "pending" | "confirmed" | "in_progress" | "completed" | "cancelled"
-          assigned_va_id: string | null
-          notes: string | null
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          user_id: string
-          service_type: string
-          description: string
-          duration_hours: number
-          hourly_rate: number
-          total_cost: number
-          currency?: string
-          preferred_start_date?: string | null
-          preferred_time?: string | null
-          status?: "pending" | "confirmed" | "in_progress" | "completed" | "cancelled"
-          assigned_va_id?: string | null
-          notes?: string | null
-        }
-        Update: {
-          service_type?: string
-          description?: string
-          duration_hours?: number
-          hourly_rate?: number
-          total_cost?: number
-          currency?: string
-          preferred_start_date?: string | null
-          preferred_time?: string | null
-          status?: "pending" | "confirmed" | "in_progress" | "completed" | "cancelled"
-          assigned_va_id?: string | null
-          notes?: string | null
-        }
-      }
-      blog_posts: {
-        Row: {
-          id: string
-          title: string
-          slug: string
-          excerpt: string | null
-          content: string
-          featured_image: string | null
-          category: string
-          tags: string[] | null
-          author_id: string | null
-          is_published: boolean
-          is_featured: boolean
-          read_time: number | null
-          view_count: number
-          published_at: string | null
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          title: string
-          slug: string
-          excerpt?: string | null
-          content: string
-          featured_image?: string | null
-          category: string
-          tags?: string[] | null
-          author_id?: string | null
-          is_published?: boolean
-          is_featured?: boolean
-          read_time?: number | null
-          view_count?: number
-          published_at?: string | null
-        }
-        Update: {
-          title?: string
-          slug?: string
-          excerpt?: string | null
-          content?: string
-          featured_image?: string | null
-          category?: string
-          tags?: string[] | null
-          is_published?: boolean
-          is_featured?: boolean
-          read_time?: number | null
-          view_count?: number
-          published_at?: string | null
-        }
-      }
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
     }
   }
 }
+
+type PublicSchema = Database[Extract<keyof Database, "public">]
+
+export type Tables<
+  PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] & PublicSchema["Views"]) | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+    ? (PublicSchema["Tables"] & PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends keyof PublicSchema["Tables"] | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends keyof PublicSchema["Tables"] | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends keyof PublicSchema["Enums"] | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName] extends {
+      [key: string]: infer E
+    }
+    ? E
+    : never
+  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
+    ? PublicSchema["Enums"][PublicEnumNameOrOptions] extends {
+        [key: string]: infer E
+      }
+      ? E
+      : never
+    : never

@@ -6,14 +6,16 @@ import {
   ChevronRight,
   Code,
   Globe,
-  Laptop,
   LayoutGrid,
   MessageSquare,
   Palette,
   PenTool,
   Play,
-  Smartphone,
   Users,
+  Briefcase,
+  GraduationCap,
+  ShoppingCart,
+  TrendingUp,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -36,8 +38,8 @@ export default function Home() {
                     Your One-Stop Digital Solutions Hub
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Over 100 digital services to transform your business. From web development to branding, we've got
-                    you covered.
+                    Over 100 digital services across 10 categories to transform your business. From design to
+                    development, marketing to education - we've got you covered.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -58,11 +60,11 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-1">
                     <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>24/7 Support</span>
+                    <span>10 Categories</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Satisfaction Guaranteed</span>
+                    <span>24/7 Support</span>
                   </div>
                 </div>
               </div>
@@ -92,43 +94,75 @@ export default function Home() {
                 <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-white">
                   Our Services
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Digital Services for Every Need</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  10 Service Categories, 100+ Solutions
+                </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Explore our comprehensive range of digital services designed to help your business thrive in the
                   digital landscape.
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              <ServiceCard
-                icon={<Globe className="h-8 w-8 text-primary" />}
-                title="Web Development"
-                description="Custom websites, e-commerce solutions, and web applications tailored to your business needs."
-              />
-              <ServiceCard
-                icon={<Smartphone className="h-8 w-8 text-primary" />}
-                title="App Development"
-                description="Native and cross-platform mobile applications for iOS and Android devices."
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
               <ServiceCard
                 icon={<Palette className="h-8 w-8 text-primary" />}
-                title="Branding & Design"
-                description="Logo design, brand identity, and visual assets that make your brand stand out."
+                title="Design & Branding"
+                description="Logo design, brand identity, UI/UX design, and complete visual branding solutions."
+                serviceCount="15+ Services"
               />
               <ServiceCard
-                icon={<MessageSquare className="h-8 w-8 text-primary" />}
-                title="Virtual Assistance"
-                description="Administrative support, customer service, and business operations assistance."
+                icon={<Globe className="h-8 w-8 text-primary" />}
+                title="Web & App Development"
+                description="Custom websites, web apps, mobile apps, e-commerce solutions, and maintenance services."
+                serviceCount="15+ Services"
+              />
+              <ServiceCard
+                icon={<TrendingUp className="h-8 w-8 text-primary" />}
+                title="Digital Marketing"
+                description="SEO, social media marketing, ads management, email campaigns, and conversion optimization."
+                serviceCount="13+ Services"
               />
               <ServiceCard
                 icon={<PenTool className="h-8 w-8 text-primary" />}
                 title="Content Creation"
-                description="Engaging blog posts, articles, videos, and social media content for your audience."
+                description="Blog writing, video editing, copywriting, podcast production, and multimedia content."
+                serviceCount="14+ Services"
+              />
+              <ServiceCard
+                icon={<ShoppingCart className="h-8 w-8 text-primary" />}
+                title="Digital Products"
+                description="Templates, UI kits, e-books, digital planners, and custom digital product development."
+                serviceCount="10+ Services"
+              />
+              <ServiceCard
+                icon={<GraduationCap className="h-8 w-8 text-primary" />}
+                title="Education & Training"
+                description="Online courses, workshops, mentorship, certification programs, and skill development."
+                serviceCount="10+ Services"
+              />
+              <ServiceCard
+                icon={<MessageSquare className="h-8 w-8 text-primary" />}
+                title="Virtual Assistance"
+                description="Administrative support, project management, customer service, and business operations."
+                serviceCount="13+ Services"
+              />
+              <ServiceCard
+                icon={<Briefcase className="h-8 w-8 text-primary" />}
+                title="Business & Tech Services"
+                description="Business consulting, automation, dashboards, SOPs, and tech stack recommendations."
+                serviceCount="10+ Services"
+              />
+              <ServiceCard
+                icon={<Users className="h-8 w-8 text-primary" />}
+                title="Community & Platforms"
+                description="Forum setup, membership communities, event hosting, and platform management."
+                serviceCount="9+ Services"
               />
               <ServiceCard
                 icon={<LayoutGrid className="h-8 w-8 text-primary" />}
-                title="Digital Marketing"
-                description="SEO, social media marketing, email campaigns, and PPC advertising strategies."
+                title="Client Services & Systems"
+                description="CRM setup, client portals, invoicing systems, and business process automation."
+                serviceCount="10+ Services"
               />
             </div>
             <div className="flex justify-center mt-12">
@@ -157,16 +191,35 @@ export default function Home() {
               </div>
             </div>
 
-            <Tabs defaultValue="web" className="mt-12">
+            <Tabs defaultValue="design" className="mt-12">
               <div className="flex justify-center">
-                <TabsList>
-                  <TabsTrigger value="web">Web</TabsTrigger>
-                  <TabsTrigger value="app">App</TabsTrigger>
-                  <TabsTrigger value="branding">Branding</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 max-w-2xl">
+                  <TabsTrigger value="design">Design</TabsTrigger>
+                  <TabsTrigger value="development">Development</TabsTrigger>
                   <TabsTrigger value="marketing">Marketing</TabsTrigger>
+                  <TabsTrigger value="content">Content</TabsTrigger>
                 </TabsList>
               </div>
-              <TabsContent value="web" className="mt-6">
+              <TabsContent value="design" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Complete Brand Identity"
+                    category="Design & Branding"
+                  />
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="UI/UX Design System"
+                    category="Design & Branding"
+                  />
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Product Packaging Design"
+                    category="Design & Branding"
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value="development" className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <PortfolioCard
                     image="/placeholder.svg?height=300&width=400"
@@ -175,51 +228,13 @@ export default function Home() {
                   />
                   <PortfolioCard
                     image="/placeholder.svg?height=300&width=400"
-                    title="Corporate Website"
+                    title="Mobile App Development"
+                    category="App Development"
+                  />
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Custom Web Application"
                     category="Web Development"
-                  />
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Educational Portal"
-                    category="Web Development"
-                  />
-                </div>
-              </TabsContent>
-              <TabsContent value="app" className="mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Fitness Tracker App"
-                    category="App Development"
-                  />
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Food Delivery App"
-                    category="App Development"
-                  />
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Social Networking App"
-                    category="App Development"
-                  />
-                </div>
-              </TabsContent>
-              <TabsContent value="branding" className="mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Restaurant Rebrand"
-                    category="Branding"
-                  />
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Tech Startup Identity"
-                    category="Branding"
-                  />
-                  <PortfolioCard
-                    image="/placeholder.svg?height=300&width=400"
-                    title="Fashion Brand Design"
-                    category="Branding"
                   />
                 </div>
               </TabsContent>
@@ -227,18 +242,37 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <PortfolioCard
                     image="/placeholder.svg?height=300&width=400"
-                    title="SEO Campaign"
+                    title="Social Media Campaign"
                     category="Digital Marketing"
                   />
                   <PortfolioCard
                     image="/placeholder.svg?height=300&width=400"
-                    title="Social Media Strategy"
+                    title="SEO Optimization"
                     category="Digital Marketing"
                   />
                   <PortfolioCard
                     image="/placeholder.svg?height=300&width=400"
                     title="Email Marketing Campaign"
                     category="Digital Marketing"
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value="content" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Video Content Series"
+                    category="Content Creation"
+                  />
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Blog Content Strategy"
+                    category="Content Creation"
+                  />
+                  <PortfolioCard
+                    image="/placeholder.svg?height=300&width=400"
+                    title="Podcast Production"
+                    category="Content Creation"
                   />
                 </div>
               </TabsContent>
@@ -263,19 +297,19 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               <TestimonialCard
-                quote="Hamduk Digital Hub transformed our online presence. Their web development team created a site that perfectly represents our brand and has significantly increased our conversions."
+                quote="Hamduk Digital Hub transformed our entire brand identity. Their design team created a cohesive brand system that perfectly represents our values and has significantly increased our brand recognition."
                 author="Sarah Johnson"
                 position="CEO, TechStart Inc."
                 avatar="/placeholder.svg?height=100&width=100"
               />
               <TestimonialCard
-                quote="The app development team at Hamduk delivered our project on time and exceeded our expectations. The app has been downloaded thousands of times with excellent reviews."
+                quote="The web development team delivered our e-commerce platform on time and exceeded our expectations. Our online sales have increased by 300% since the launch."
                 author="Michael Chen"
-                position="Product Manager, MobileFirst"
+                position="Founder, RetailPro"
                 avatar="/placeholder.svg?height=100&width=100"
               />
               <TestimonialCard
-                quote="Their branding services completely revitalized our company image. We've seen a 40% increase in brand recognition since working with Hamduk Digital Hub."
+                quote="Their digital marketing services completely transformed our online presence. We've seen a 250% increase in qualified leads and our ROI has never been better."
                 author="Jessica Williams"
                 position="Marketing Director, GrowthBrand"
                 avatar="/placeholder.svg?height=100&width=100"
@@ -311,8 +345,8 @@ export default function Home() {
                     Ready to Transform Your Digital Presence?
                   </h2>
                   <p className="max-w-[600px] opacity-90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Let's discuss how our 100+ digital services can help your business grow and succeed in the digital
-                    landscape.
+                    Let's discuss how our 100+ digital services across 10 categories can help your business grow and
+                    succeed in the digital landscape.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -322,7 +356,7 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-primary-foreground" asChild>
+                  <Button variant="outline" size="lg" className="border-primary-foreground bg-transparent" asChild>
                     <Link href="/services">View Services</Link>
                   </Button>
                 </div>
@@ -330,24 +364,24 @@ export default function Home() {
               <div className="flex items-center justify-center">
                 <div className="grid grid-cols-2 gap-4 md:gap-8">
                   <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 text-foreground">
-                    <Code className="h-8 w-8 text-primary" />
-                    <h3 className="text-xl font-bold">Web & App</h3>
-                    <p className="text-sm text-muted-foreground text-center">Development solutions for all platforms</p>
-                  </div>
-                  <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 text-foreground">
-                    <Palette className="h-8 w-8 text-secondary" />
+                    <Palette className="h-8 w-8 text-primary" />
                     <h3 className="text-xl font-bold">Design</h3>
-                    <p className="text-sm text-muted-foreground text-center">Creative branding and UI/UX design</p>
+                    <p className="text-sm text-muted-foreground text-center">Branding & creative solutions</p>
                   </div>
                   <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 text-foreground">
-                    <Users className="h-8 w-8 text-secondary" />
+                    <Code className="h-8 w-8 text-secondary" />
+                    <h3 className="text-xl font-bold">Development</h3>
+                    <p className="text-sm text-muted-foreground text-center">Web & app development</p>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 text-foreground">
+                    <TrendingUp className="h-8 w-8 text-secondary" />
                     <h3 className="text-xl font-bold">Marketing</h3>
-                    <p className="text-sm text-muted-foreground text-center">Digital strategies that drive growth</p>
+                    <p className="text-sm text-muted-foreground text-center">Digital growth strategies</p>
                   </div>
                   <div className="flex flex-col items-center space-y-2 rounded-lg bg-white p-4 text-foreground">
-                    <Laptop className="h-8 w-8 text-primary" />
+                    <GraduationCap className="h-8 w-8 text-primary" />
                     <h3 className="text-xl font-bold">Education</h3>
-                    <p className="text-sm text-muted-foreground text-center">Online courses and training programs</p>
+                    <p className="text-sm text-muted-foreground text-center">Training & skill development</p>
                   </div>
                 </div>
               </div>
@@ -359,12 +393,15 @@ export default function Home() {
   )
 }
 
-function ServiceCard({ icon, title, description }) {
+function ServiceCard({ icon, title, description, serviceCount }) {
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg">
+    <Card className="overflow-hidden transition-all hover:shadow-lg group">
       <CardContent className="p-6">
-        <div className="mb-4">{icon}</div>
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <div className="mb-4 flex items-center justify-between">
+          {icon}
+          <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">{serviceCount}</span>
+        </div>
+        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </CardContent>
     </Card>
