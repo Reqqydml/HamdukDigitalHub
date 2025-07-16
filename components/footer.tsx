@@ -139,16 +139,15 @@ export function Footer() {
   return (
     <footer className="w-full border-t bg-background py-12">
       <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
-          <div className="space-y-4 lg:col-span-2">
+          <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <Image src="/logo.png" alt="Hamduk Digital Hub logo" width={32} height={32} />
               <span className="text-xl font-bold">Hamduk Digital Hub</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your one-stop digital solutions hub with over 100 services across 10 categories to transform your
-              business.
+              Your one-stop digital solutions hub with over 100 services to transform your business.
             </p>
             <div className="flex space-x-4">
               {[
@@ -171,36 +170,17 @@ export function Footer() {
               ))}
             </div>
           </div>
-            {/* Company */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Company</h3>
-            <ul className="space-y-2">
-              {[
-                ["About Us", "/about"],
-                ["Portfolio", "/portfolio"],
-                ["Careers", "/careers"],
-                ["Blog", "/blog"],
-                ["Testimonials", "/testimonials"],
-              ].map(([label, href]) => (
-                <li key={label}>
-                  <Link href={href} className="text-sm text-muted-foreground hover:text-primary">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          {/* Services Column 1 */}
+          {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Design & Development</h3>
+            <h3 className="text-lg font-semibold">Services</h3>
             <ul className="space-y-2">
               {[
-                ["Design & Branding", "/services#design-branding"],
-                ["Web Development", "/services#web-app-development"],
-                ["App Development", "/services#web-app-development"],
-                ["Digital Products", "/services#digital-products"],
-                ["Content Creation", "/services#content-creation"],
+                ["Web Development", "/services#web-development"],
+                ["App Development", "/services#app-development"],
+                ["Branding & Design", "/services#branding"],
+                ["Digital Marketing", "/services#marketing"],
+                ["Content Creation", "/services#content"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -211,16 +191,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services Column 2 */}
+          {/* Company */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Business & Marketing</h3>
+            <h3 className="text-lg font-semibold">Company</h3>
             <ul className="space-y-2">
               {[
-                ["Digital Marketing", "/services#digital-marketing"],
-                ["Virtual Assistance", "/services#virtual-assistance"],
-                ["Business & Tech", "/services#business-tech"],
-                ["Client Services", "/services#client-services"],
-                ["Education & Training", "/services#education-training"],
+                ["About Us", "/about"],
+                ["Portfolio", "/portfolio"],
+                ["Careers", "/careers"],
+                ["Blog", "/blog"],
+                ["Testimonials", "/testimonials"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -233,8 +213,10 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Stay Updated</h3>
-            <p className="text-sm text-muted-foreground">Get the latest updates, tips, and exclusive offers.</p>
+            <h3 className="text-lg font-semibold">Subscribe</h3>
+            <p className="text-sm text-muted-foreground">
+              Subscribe to our newsletter to get the latest updates and offers.
+            </p>
 
             {notification && (
               <Notification

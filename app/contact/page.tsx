@@ -512,7 +512,7 @@ export default function ContactPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="under-500k">Under ₦500,000</SelectItem>
-                          <SelectItem value="500k-1m">₦500,000 - ��1,000,000</SelectItem>
+                          <SelectItem value="500k-1m">₦500,000 - ₦1,000,000</SelectItem>
                           <SelectItem value="1m-2.5m">₦1,000,000 - ₦2,500,000</SelectItem>
                           <SelectItem value="2.5m-5m">₦2,500,000 - ₦5,000,000</SelectItem>
                           <SelectItem value="5m-plus">₦5,000,000+</SelectItem>
