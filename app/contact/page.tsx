@@ -290,7 +290,7 @@ export default function ContactPage() {
     } finally {
       setIsSubmitting(false)
     }
-  }
+  
 
   return (
     <div className="flex min-h-screen flex-col">
