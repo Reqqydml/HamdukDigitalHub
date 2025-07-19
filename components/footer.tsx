@@ -10,12 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Notification } from "@/components/ui/notification"
 import { Mail, CheckCircle, AlertCircle, Loader2, Shield } from "lucide-react"
 import { cn } from "@/lib/utils"
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
-} from "lucide-react"
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -158,23 +153,22 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               {[
-              { href: "https://facebook.com", label: "Facebook", Icon: Facebook },
-  { href: "https://twitter.com", label: "Twitter", Icon: Twitter },
-  { href: "https://linkedin.com", label: "LinkedIn", Icon: Linkedin },
-  { href: "https://instagram.com", label: "Instagram", Icon: Instagram },
-              ].map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={label}
-                >
-                  <span className="sr-only">{label}</span>
-                  <div className="w-5 h-5 bg-muted-foreground hover:bg-primary rounded transition-colors" />
-                </Link>
-              ))}
+  { href: "https://facebook.com", label: "Facebook", icon: Facebook },
+  { href: "https://twitter.com", label: "Twitter", icon: Twitter },
+  { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
+  { href: "https://instagram.com", label: "Instagram", icon: Instagram },
+].map(({ href, label, icon: Icon }) => (
+  <Link
+    key={label}
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+    aria-label={label}
+  >
+    <Icon className="w-5 h-5" />
+  </Link>
+))}
             </div>
           </div>
             {/* Company */}
