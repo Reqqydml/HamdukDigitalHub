@@ -526,9 +526,6 @@ export default function CareersPage() {
             <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
               <Link href="#positions">View Open Positions</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/careers/apply">Apply Now</Link>
-            </Button>
           </div>
 
           {/* Stats */}
