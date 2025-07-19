@@ -1,4 +1,4 @@
-"use client"
+use client"
 
 import type React from "react"
 
@@ -256,7 +256,7 @@ export default function ContactPage() {
             "info",
             "What's Next?",
             "Check your email for a confirmation message. Our team will review your request and contact you soon.",
-            "You can also reach us directly at info@hamdukdigital.com or +234 (0) 123 456 7890.",
+            "You can also reach us directly at info@hamdukdigital.com or +234 916 765 6667.",
           )
         }, 3000)
       } else {
@@ -489,6 +489,10 @@ export default function ContactPage() {
                           <SelectItem value="branding">Branding & Design</SelectItem>
                           <SelectItem value="digital-marketing">Digital Marketing</SelectItem>
                           <SelectItem value="content-creation">Content Creation</SelectItem>
+                          <SelectItem value="education-training">Education & Training</SelectItem>
+                          <SelectItem value="business-tech">Business & Tech</SelectItem>
+                          <SelectItem value="community-platforms">Community & Platforms</SelectItem>
+                          <SelectItem value="client-ervices">Client Services</SelectItem>
                           <SelectItem value="virtual-assistance">Virtual Assistance</SelectItem>
                           <SelectItem value="multiple">Multiple Services</SelectItem>
                           <SelectItem value="consultation">Consultation</SelectItem>
@@ -511,8 +515,11 @@ export default function ContactPage() {
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="under-500k">Under ₦500,000</SelectItem>
-                          <SelectItem value="500k-1m">₦500,000 - ��1,000,000</SelectItem>
+                           <SelectItem value="under-10k">under ₦10,000</SelectItem>
+                           <SelectItem value="10k-50k">₦10,000 - ₦50,000</SelectItem>
+                           <SelectItem value="50k-100k">₦50,000 - ₦100,000</SelectItem>
+                          <SelectItem value="100k-500k">₦100,000 - ₦500,000</SelectItem>
+                          <SelectItem value="500k-1m">₦500,000 - ₦1,000,000</SelectItem>
                           <SelectItem value="1m-2.5m">₦1,000,000 - ₦2,500,000</SelectItem>
                           <SelectItem value="2.5m-5m">₦2,500,000 - ₦5,000,000</SelectItem>
                           <SelectItem value="5m-plus">₦5,000,000+</SelectItem>
@@ -528,7 +535,7 @@ export default function ContactPage() {
                           <SelectValue placeholder="When do you need this completed?" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="asap">ASAP</SelectItem>
+                          <SelectItem value="asap">ASAP/Express Delivery(<1 day)</SelectItem>
                           <SelectItem value="1-month">Within 1 month</SelectItem>
                           <SelectItem value="2-3-months">2-3 months</SelectItem>
                           <SelectItem value="3-6-months">3-6 months</SelectItem>
@@ -572,7 +579,7 @@ export default function ContactPage() {
                       <Checkbox
                         id="newsletter"
                         checked={formData.newsletter}
-                        onCheckedChange={(checked) => handleInputChange("newsletter", checked as boolean)}
+                        onCheckedChange={(checked) => handleInputChange("newsletter", checked === true)}
                       />
                       <Label htmlFor="newsletter" className="text-sm">
                         Subscribe to our newsletter for digital tips and updates
@@ -583,7 +590,7 @@ export default function ContactPage() {
                       <Checkbox
                         id="terms"
                         checked={formData.terms}
-                        onCheckedChange={(checked) => handleInputChange("terms", checked as boolean)}
+onCheckedChange={(checked) => handleInputChange("terms", checked === true)}
                         required
                         className={errors.terms ? "border-red-500" : ""}
                       />
@@ -634,9 +641,9 @@ export default function ContactPage() {
                       <div>
                         <p className="font-medium">Address</p>
                         <p className="text-sm text-muted-foreground">
-                          123 Digital Street
+                         4, Dipeolu street 
                           <br />
-                          Victoria Island, Lagos
+                          Ikeja, Lagos
                           <br />
                           Nigeria
                         </p>
@@ -646,7 +653,7 @@ export default function ContactPage() {
                       <Phone className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <p className="font-medium">Phone</p>
-                        <p className="text-sm text-muted-foreground">+234 (0) 123 456 7890</p>
+                        <p className="text-sm text-muted-foreground">+234 916 765 6667</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -673,16 +680,24 @@ export default function ContactPage() {
                 </Card>
 
                 {/* Map */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Find Us</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground">Interactive Map Coming Soon</p>
-                    </div>
-                  </CardContent>
-                </Card>
+              <Card>
+  <CardHeader>
+    <CardTitle>Find Us</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="aspect-video w-full rounded-lg overflow-hidden">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3301848546967!2d3.346135573975316!3d6.605829022203243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b922df4b0d465%3A0x2be3ccb1ac0e4962!2s4%20Dipeolu%20St%2C%20Allen%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1752948880223!5m2!1sen!2sng"
+        width="100%"
+        height="100%"
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full border-0"
+      ></iframe>
+    </div>
+  </CardContent>
+</Card>
 
                 {/* Live Chat */}
                 <Card>
