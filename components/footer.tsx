@@ -10,6 +10,12 @@ import { Input } from "@/components/ui/input"
 import { Notification } from "@/components/ui/notification"
 import { Mail, CheckCircle, AlertCircle, Loader2, Shield } from "lucide-react"
 import { cn } from "@/lib/utils"
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react"
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -143,7 +149,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Hamduk Digital Hub logo" width={32} height={32} />
+              <Image src="/logo.png" alt="Hamduk Digital Hub logo" width={64} height={64} />
               <span className="text-xl font-bold">Hamduk Digital Hub</span>
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -152,10 +158,10 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               {[
-                { href: "https://facebook.com", label: "Facebook" },
-                { href: "https://twitter.com", label: "Twitter" },
-                { href: "https://linkedin.com", label: "LinkedIn" },
-                { href: "https://instagram.com", label: "Instagram" },
+              { href: "https://facebook.com", label: "Facebook", Icon: Facebook },
+  { href: "https://twitter.com", label: "Twitter", Icon: Twitter },
+  { href: "https://linkedin.com", label: "LinkedIn", Icon: Linkedin },
+  { href: "https://instagram.com", label: "Instagram", Icon: Instagram },
               ].map(({ href, label }) => (
                 <Link
                   key={label}
