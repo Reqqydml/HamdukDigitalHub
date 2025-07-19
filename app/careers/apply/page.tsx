@@ -401,18 +401,18 @@ export default function JobApplicationPage() {
             <CardContent className="space-y-4">
               <div>
                 <Label htmlFor="department">Department *</Label>
-                <Select value={formData.department} onValueChange={(value) => handleInputChange("department", value)}>
-                  <SelectTrigger className={errors.department ? "border-red-500" : ""}>
-                    <SelectValue placeholder="Select a department" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {departments.map((dept) => (
-                      <SelectItem key={dept.id} value={dept.name}>
-                        {dept.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
+  <SelectTrigger className="w-full" placeholder="Choose a department" />
+  <SelectContent>
+    {departments
+      .filter((department) => department.trim() !== "")
+      .map((department) => (
+        <SelectItem key={department} value={department}>
+          {department}
+        </SelectItem>
+      ))}
+  </SelectContent>
+</Select>
                 {errors.department && <p className="text-red-500 text-sm mt-1">{errors.department}</p>}
               </div>
               <div>
