@@ -24,8 +24,6 @@ import { useAuth } from "@/components/auth/auth-provider"
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/courses", label: "Courses" },
-  { href: "/shop", label: "Shop" },
   { href: "/community-hub", label: "Community" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -59,7 +57,7 @@ export function Header() {
         {/* Logo and Brand */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Hamduk Digital Hub Logo" width={32} height={32} />
+            <Image src="/logo.png" alt="Hamduk Digital Hub Logo" width={64} height={64} />
             <span className="text-xl font-bold">Hamduk Digital Hub</span>
           </Link>
         </div>
@@ -78,13 +76,13 @@ export function Header() {
                       <ListItem href="/services" title="All Services">
                         Browse our complete catalog of over 100 digital services
                       </ListItem>
-                      <ListItem href="/services/web-development" title="Web Development">
+                      <ListItem href="/services#web-app-development" title="Web Development">
                         Custom websites, e-commerce, and web applications
                       </ListItem>
-                      <ListItem href="/services/app-development" title="App Development">
+                      <ListItem href="/services#web-app-development" title="App Development">
                         Mobile apps for iOS and Android platforms
                       </ListItem>
-                      <ListItem href="/services/branding" title="Branding">
+                      <ListItem href="/services#design-branding" title="Branding">
                         Logo design, brand identity, and visual assets
                       </ListItem>
                     </ul>
